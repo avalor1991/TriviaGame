@@ -1,0 +1,14 @@
+body{
+    background: url('../images/wallpaper2.jpg');
+}
+#title{
+    color:white;
+    padding-top: 12%;
+    text-align: center;
+}
+.start-button{
+    padding: 15px;
+}
+#timer{
+    font-size: 40px;
+}
