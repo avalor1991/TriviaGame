@@ -122,14 +122,18 @@ $(document).ready(function() {
     function win(){
         correctTally++;
         game = "<p class='text-center'>Correct! The answer is: " + questions[questionCounter].answer;
+        var pic = $("<img>").attr("src",questions[questionCounter].gif);
         $("#main").html(game);
+        $("#main").append(pic);
         setTimeout(wait, 3000);
     }
 
     function timeOut(){
         unansweredTally++
-        game = "<p class='text-center'>You ran out of time!  The correct answer was: " + questions[questionCounter].answer + "</p>" + "<img class='center-block img-wrong' src=questions[questionCounter].gif>";
+        game = "<p class='text-center'>You ran out of time!  The correct answer was: " + questions[questionCounter].answer + "</p>";
         $("#main").html(game);
+        var pic = $("<img>").attr("src",questions[questionCounter].gif);
+        $("#main").append(pic);
         setTimeout(wait, 3000);
         
     }
