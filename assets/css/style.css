@@ -1,14 +1,43 @@
 body{
     background: url('../images/wallpaper2.jpg');
+    color: white;
+    background-size: 100%;
+    font-family: 'Inconsolata', monospace;
 }
 #title{
     color:white;
-    padding-top: 12%;
+    padding: 5%;
     text-align: center;
 }
-.start-button{
+.btn {
+    margin: auto;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
+.timer-p {
+    margin: 5px;
+    font-size:24px;
+}
+p.text-center {
+    font-size:24px;
+}
+.answer {
+    /* padding-top: 7px; */
+    height: 55px;
+    color: black;
     padding: 15px;
+    background-color: white;
+    border-radius: 4px;
+    opacity: .7;
 }
-#timer{
-    font-size: 40px;
-}
+.answer:hover {
+    background: rgba(250, 99, 99, 0.99);
+  }
+.reset-button {
+    margin-top: 40px;
+  }
+  .summary-correct {
+    margin-top: 40px;
+  }
