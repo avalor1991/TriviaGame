@@ -70,7 +70,7 @@ var questions = [{
     "option4":"Batman and Cat Woman",
     "answer":"Elektra and Daredevil"
 }];
-var wrong = "https://giphy.com/gifs/3oz8xLd9DJq2l2VFtu/html5";
+var wrong = "assets/images/trump.gif";
 var counter = 30;
 var intervalId;
 var game;
@@ -139,8 +139,10 @@ $(document).ready(function() {
     }
     function loss(){
         incorrectTally++;
-        game = "<p class='text-center'>Wrong! The correct answer is: "+ questions[questionCounter].answer + "</p>" + "<img class='center-block img-wrong' src='/assets/images/x.gif'>";
+        game = "<p class='text-center'>Wrong! The correct answer is: "+ questions[questionCounter].answer + "</p>";
+        var pic = $("<img>").attr("src",wrong);
         $("#main").html(game);
+        $("#main").append(pic);
         setTimeout(wait, 3000);
     }
 
