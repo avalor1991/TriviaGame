@@ -12,63 +12,72 @@ var questions = [{
     "option2":"Beverly Hills 90210",
     "option3":"The Hills",
     "option4":"That '80s Show",
-    "answer":"That '70s Show"
+    "answer":"That '70s Show",
+    "gif":"assets/images/venom.gif"
 }, {
     "question":"Halle Berry has won an Oscar Award, but also won a Razzie Award for Worst Actress for her role as what superhero?",
     "option1":"Super Girl",
     "option2":"Storm",
     "option3":"Cat Woman",
     "option4":"Wonder Woman",
-    "answer":"Cat Woman"
+    "answer":"Cat Woman",
+    "gif":"assets/images/catWoman.gif"
 }, {
     "question":"Bruce Banner became The Incredible Hulk after being exposed to what type of rays?",
     "option1":"X-rays",
     "option2":"Alpha rays",
     "option3":"Gamma rays",
     "option4":"Sting rays",
-    "answer":"Gamma rays"
+    "answer":"Gamma rays",
+    "gif":"assets/images/hulk.gif"
 }, {
     "question":"Gwyneth Paltrow plays Tony Stark's personal assistant in Iron Man. What is her character's name?",
     "option1":"Ginger Jones",
     "option2":"Pepper Potts",
     "option3":"Cinnamon Simpson",
     "option4":"Paprika Patrick",
-    "answer":"Pepper Potts"
+    "answer":"Pepper Potts",
+    "gif":"assets/images/ironPotts.gif"
 }, {
     "question":"What is Jessica Alba's main superpower in The Fantastic Four?",
     "option1":"She can control the weather",
     "option2":"Telekinesis",
     "option3":"Invisibility",
     "option4":"Super strength",
-    "answer":"Invisibility"
+    "answer":"Invisibility",
+    "gif":"assets/images/fantastic.gif"
 }, {
     "question":"In X-Men 3: The Last Stand, Jean Grey becomes consumed by her ultra powerful alter-ego known as what?",
-    "option1":"The Sparrow.",
+    "option1":"The Sparrow",
     "option2":"The Eagle",
     "option3":"The Phoenix",
     "option4":"The Raven",
-    "answer":"The Phoenix"
+    "answer":"The Phoenix",
+    "gif":"assets/images/xman.gif"
 }, {
     "question":"Wolverine's claws are made out of what super strong metal?",
     "option1":"Titanium",
     "option2":"Diamond",
     "option3":"Scandium",
     "option4":"Adamantium",
-    "answer":"Adamantium"
+    "answer":"Adamantium",
+    "gif":"assets/images/wolverine.gif"
 }, {
     "question":"At the end of Batman Begins, Batman finds a scorched playing card foreshadowing the presence of what legendary bad guy?",
     "option1":"The Queen of Hearts",
     "option2":"The Joker",
     "option3":"The King of Diamonds",
     "option4":"The Jack of Clubs",
-    "answer":"The Joker"
+    "answer":"The Joker",
+    "gif":"assets/images/joker.gif"
 }, {
     "question":"Jennifer Garner and Ben Affleck met and fell in love while starring together as what superheroes?",
     "option1":"Superman and Lois Lane",
     "option2":"Wonder Woman and Captain America",
     "option3":"Elektra and Daredevil",
     "option4":"Batman and Cat Woman",
-    "answer":"Elektra and Daredevil"
+    "answer":"Elektra and Daredevil",
+    "gif":"assets/images/daredevil.gif"
 }];
 var wrong = "assets/images/trump.gif";
 var counter = 30;
@@ -79,22 +88,18 @@ var questionCounter = 0;
 var correctTally = 0;
 var incorrectTally = 0;
 var unansweredTally = 0;
-
 var selectedAnswer;
-
-$(document).ready(function() {
 
     function timeWrapper() {
         intervalId = setInterval(timer, 1000);
         function timer(){
-            $(".timer").html(counter);
-            if (counter === 0) {
-            clearInterval(intervalId);
-            timeOut();
-            }
-            else if (counter > 0) {
+            if (counter > 0) {
                 counter--;
-                }
+                }else if (counter === 0) {
+                clearInterval(intervalId);
+                timeOut();
+            }
+            $(".timer").html(counter);
         }
     }
    
@@ -102,21 +107,20 @@ $(document).ready(function() {
         display = "<p class='text-center main-button-container'><a class='btn btn-warning  start-button' href='#' role='button'>Start Game</a></p>";
         $("#main").append(display);
     }
-    startPage();
 
     function generateQuestions(index) {
         var q = questions[index];
+        counter = 30;
         game = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>"+ counter +"</span></p><p class='text-center'>" + q.question + "</p><p class='answer'>" + q.option1 + "</p><p class='answer'>"+q.option2+"</p><p class='answer'>"+q.option3+"</p><p class='answer'>"+q.option4+"</p>";
         $("#main").html(game);
-    }; 
+    }
     
-    function nextQuestion(){}
-
     function wait(){
+        if (questionCounter < 9){
         questionCounter++;
         generateQuestions(questionCounter);
-        counter = 30;
-        timeWrapper();
+        timeWrapper();}
+        else {finalScreen();}
     }
 
     function win(){
@@ -135,11 +139,11 @@ $(document).ready(function() {
         var pic = $("<img>").attr("src",questions[questionCounter].gif);
         $("#main").append(pic);
         setTimeout(wait, 3000);
-        
     }
+
     function loss(){
         incorrectTally++;
-        game = "<p class='text-center'>Wrong! The correct answer is: "+ questions[questionCounter].answer + "</p>";
+        game = "<p class='text-center'>Wrong! The correct answer is: "+ questions[questionCounter].answer;
         var pic = $("<img>").attr("src",wrong);
         $("#main").html(game);
         $("#main").append(pic);
@@ -147,8 +151,8 @@ $(document).ready(function() {
     }
 
     function finalScreen() {
-        game = "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + unansweredTally + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-warning btn-md btn-block reset-button' href='#' role='button'>Reset</a></p>";
-        $("#mainArea").html(gameHTML);
+        game = "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + unansweredTally + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-warning btn-md btn-block reset-button' href='#' role='button'>Reset Movie Game</a></p>";
+        $("#main").html(game);
     }
 
     function resetGame() {
@@ -157,10 +161,12 @@ $(document).ready(function() {
         incorrectTally = 0;
         unansweredTally = 0;
         counter = 30;
-        generateQuestions();
+        generateQuestions(questionCounter);
         timeWrapper();
         }
 
+$(document).ready(function() {
+    startPage();
     $(".start-button").on("click", function(event){
         event.preventDefault();
         timeWrapper();
@@ -169,11 +175,13 @@ $(document).ready(function() {
 
     $("body").on("click",".answer", function(event){
         selectedAnswer = $(this).text();
- 
         if (selectedAnswer === questions[questionCounter].answer) {
-            clearInterval(counter);
+            clearInterval(intervalId);
             win();
-        }else{loss();}
+        }else{
+            clearInterval(intervalId);
+            loss();
+        }
     
     });
 
